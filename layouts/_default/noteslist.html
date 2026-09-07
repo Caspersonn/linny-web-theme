@@ -6,10 +6,15 @@
     {{/* Only real notes have a crdate in their front matter, so the overview
          pages themselves and the search page fall outside the list. */}}
     {{ $notes := where site.RegularPages "Params.crdate" "!=" nil }}
+    {{/* Optional filter: `filter: starred` limits the list to starred notes. */}}
+    {{ if eq .Params.filter "starred" }}{{ $notes = where $notes "Params.starred" true }}{{ end }}
     {{ $sortby := .Params.sortby | default "date" }}
     {{ $sorted := $notes.ByDate.Reverse }}
     {{ if eq $sortby "title" }}{{ $sorted = $notes.ByTitle }}{{ end }}
 
+    {{ if eq (len $notes) 0 }}
+    <p><em>{{ if eq .Params.filter "starred" }}No starred notes yet.{{ else }}No notes yet.{{ end }}</em></p>
+    {{ else }}
     {{ $p := .Paginate $sorted }}
     <p><em>{{ len $notes }} notes · {{ if eq $sortby "title" }}by title{{ else }}by date (newest first){{ end }} · page {{ $p.PageNumber }}/{{ $p.TotalPages }}</em></p>
     <ul class="gdoc-noteslist">
@@ -26,6 +31,7 @@
       <span>page {{ $p.PageNumber }} of {{ $p.TotalPages }}</span>
       <span>{{ if $p.HasNext }}<a href="{{ $p.Next.URL }}">next →</a>{{ end }}</span>
     </nav>
+    {{ end }}
     {{ end }}
   </article>
 {{ end }}

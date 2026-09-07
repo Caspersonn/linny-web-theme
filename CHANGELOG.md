@@ -2,9 +2,14 @@
 
 All notable changes to linny-web-theme. Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## NEXT VERSION
+## 0.1.4 - 2026-09-07
 
 ### Added
+- **Starred notes overview**: a third overview page (`/notes-starred/`) listing every note whose
+  front matter has `starred: true`, linked from the "Overviews" sidebar block.
+  - Reuses the shared `noteslist` layout via a new optional `filter: starred` front-matter param —
+    pagination and sorting come for free; the two existing overviews are unaffected.
+  - Renders a friendly empty state ("No starred notes yet.") when no note is starred.
 - **SSH deploy-key auth** for the NixOS module (`gitSshKeyFile`), alongside the fine-grained token
   (`gitTokenFile`) — set exactly one. Lets a notebook keep an existing read-only SSH deploy key.
 - **Reusable NixOS module** (`nixosModules.linny-web`, via the new `flake.nix`): serve a private

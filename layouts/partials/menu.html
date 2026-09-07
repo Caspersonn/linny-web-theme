@@ -15,6 +15,10 @@
         <a class="gdoc-nav__entry{{ if eq .RelPermalink (relURL "/notes-by-date/") }} is-active{{ end }}"
            href="{{ "/notes-by-date/" | relURL }}">All notes (by date)</a>
       </li>
+      <li>
+        <a class="gdoc-nav__entry{{ if eq .RelPermalink (relURL "/notes-starred/") }} is-active{{ end }}"
+           href="{{ "/notes-starred/" | relURL }}">Starred notes</a>
+      </li>
     </ul>
   </section>
 
