@@ -2,7 +2,7 @@
 
 All notable changes to linny-web-theme. Format based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
-## Unreleased
+## 0.1.5 - 2026-09-08
 
 ### Added
 - **In-page note editor** (`params.linnyEdit`, off by default): a pencil in the page-header row of a
